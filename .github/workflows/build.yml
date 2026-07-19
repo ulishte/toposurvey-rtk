@@ -20,13 +20,9 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Generate Gradle 8.7 wrapper in isolation
-        run: |
-          mkdir -p /tmp/wrap
-          cd /tmp/wrap
-          gradle wrapper --gradle-version 8.7
-          cp gradlew "$GITHUB_WORKSPACE/project/TopoSurvey/"
-          cp -r gradle "$GITHUB_WORKSPACE/project/TopoSurvey/"
+      - name: Generate Gradle 8.7 wrapper
+        working-directory: project/TopoSurvey
+        run: gradle wrapper --gradle-version 8.7
 
       - name: Build debug APK
         working-directory: project/TopoSurvey
